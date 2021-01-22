@@ -1,0 +1,45 @@
+﻿@using BlazorApp.Components
+@using BlazorApp.GroupByMany
+
+<div>
+    <RecursiveGroupContainer TItem="PizzaViewModel" Group=@Pizza.GroupedPizzas>
+        <GroupTemplate>
+            <StandardGroupTemplate>
+                <HeaderTemplate>
+                    @if (context.GroupName == nameof(PizzaViewModel.AccountNumber))
+                    {
+                        @($"Pizza Account:  {context.Item}");
+                    }
+                    else if (context.GroupName == nameof(PizzaViewModel.RecipeYear))
+                    {
+                        @($"Recipe Year:  {context.Item}");
+                    }
+                    else if (context.GroupName == nameof(PizzaViewModel.Size))
+                    {
+                        @($"Pizza Size:  {context.Item}");
+                    }
+                    else
+                    {
+                        @($"Cost:  {context.Item}");
+                    }
+                </HeaderTemplate>
+                <Badges>
+                </Badges>
+                <MainContentTemplate>
+                </MainContentTemplate>
+                <ActionTemplate>
+                </ActionTemplate>
+                <SummaryTemplate>
+                </SummaryTemplate>
+            </StandardGroupTemplate>
+        </GroupTemplate>
+        <DetailTemplate>
+            <div>Details Section</div>
+        </DetailTemplate>
+    </RecursiveGroupContainer>
+</div>
+
+@code {
+    [CascadingParameter(Name = "PizzaWorld")]
+    private PizzaWorldViewModel Pizza { get; set; }
+}

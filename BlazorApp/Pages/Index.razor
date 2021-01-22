@@ -1,0 +1,17 @@
+﻿@page "/"
+@using BlazorApp.Components
+
+<h1>Hello, Pizza World!</h1>
+
+<CascadingValue Name="PizzaWorld" Value=@PizzaWorld>
+    <PizzaWorld />
+</CascadingValue>
+
+@code {
+    public PizzaWorldViewModel PizzaWorld { get; set; }
+
+    protected override void OnInitialized()
+    {
+        PizzaWorld = new PizzaWorldViewModel();
+    }
+}

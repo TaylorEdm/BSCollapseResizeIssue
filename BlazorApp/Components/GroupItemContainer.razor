@@ -1,0 +1,38 @@
+﻿@using BlazorApp.GroupByMany
+@typeparam TItem
+
+<BSContainer>
+    <BSRow style="align-items: center">
+        <BSCol>
+            <div>
+                <button class="py-2"
+                        type="button"
+                        @onclick="OnCardToggle">
+                    @Content
+                </button>
+            </div>
+        </BSCol>
+    </BSRow>
+</BSContainer>
+<BSCollapse IsOpen="@IsOpen" class="ml-2">
+    @ChildContent
+</BSCollapse>
+
+@code {
+    [Parameter]
+    public RenderFragment Content { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public IGroupByManyResult<TItem> Group { get; set; }
+
+    bool IsOpen { get; set; }
+
+    void OnCardToggle(MouseEventArgs e)
+    {
+        IsOpen = !IsOpen;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,34 @@
+﻿@using BlazorApp.GroupByMany
+@typeparam TItem
+
+@if (Group.SubGroups.Any())
+{
+    @foreach (var subGroup in Group.SubGroups)
+    {
+        <div @key=@subGroup.Key>
+            <GroupItemContainer Group=@subGroup>
+                <Content>
+                    @GroupTemplate(subGroup)
+                </Content>
+                <ChildContent>
+                    <RecursiveGroupContainer Group=@subGroup GroupTemplate=@GroupTemplate DetailTemplate=@DetailTemplate />
+                </ChildContent>
+            </GroupItemContainer>
+        </div>
+    }
+}
+else
+{
+    @DetailTemplate(Group.Details)
+}
+
+@code {
+    [Parameter]
+    public RenderFragment<IGroupByManyResult<TItem>> GroupTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<IEnumerable<TItem>> DetailTemplate { get; set; }
+
+    [Parameter]
+    public IGroupByManyResult<TItem> Group { get; set; }
+}

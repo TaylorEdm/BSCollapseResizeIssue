@@ -1,0 +1,36 @@
+﻿@using BlazorStrap
+
+<BSContainer>
+    <BSRow>
+        <BSCol SM="8" MD="8">
+            <div class="d-flex">
+                <h2 class="align-self-center mb-0 mr-1">@HeaderTemplate</h2>
+                @Badges
+            </div>
+            @MainContentTemplate
+        </BSCol>
+        <BSCol SM="4" MD="2">
+            @ActionTemplate
+        </BSCol>
+        <BSCol MD="2">
+            @SummaryTemplate
+        </BSCol>
+    </BSRow>
+</BSContainer>
+
+@code {
+    [Parameter]
+    public RenderFragment HeaderTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment Badges { get; set; }
+
+    [Parameter]
+    public RenderFragment MainContentTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment ActionTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment SummaryTemplate { get; set; }
+}
